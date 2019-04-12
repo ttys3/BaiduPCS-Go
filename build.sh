@@ -25,9 +25,13 @@ Build() {
     if [ $2 = "windows" ];then
         goversioninfo -icon=assets/$name.ico -manifest="$name".exe.manifest -product-name="$name" -file-version="$version" -product-version="$version" -company=liuzhuoling -copyright="©2018 liuzhuoling" -o=resource_windows.syso
         $go build -ldflags "-X main.Version=$version -s -w" -o "$output/$1/$name.exe"
+        chmod a+rx "$output/$1/$name.exe"
+        upx "$output/$1/$name.exe"
         RicePack $1 $name.exe
     else
         $go build -ldflags "-X main.Version=$version -s -w" -o "$output/$1/$name"
+        chmod a+rx "$output/$1/$name"
+        upx "$output/$1/$name"
         RicePack $1 $name
     fi
 
@@ -37,7 +41,6 @@ Build() {
 # zip 打包
 Pack() {
     cd $output
-    upx -9 "$1"
     zip -q -r "$1.zip" "$1"
 
     # 删除
