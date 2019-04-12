@@ -1,4 +1,5 @@
 #!/bin/sh
 
-GOOS=linux GOARCH=amd64 go build -ldflags "-s -w"
-upx BaiduPCS-Go
+rm -f BaiduPCS-Go
+GOOS=linux GOARCH=amd64 go build
+#upx BaiduPCS-Go
