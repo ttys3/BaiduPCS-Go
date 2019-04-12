@@ -9,6 +9,9 @@ if [ "$1" = "" ];then
     version=3.6.7
 fi
 
+which goversioninfo || go get github.com/josephspurrier/goversioninfo/cmd/goversioninfo
+which rice || go get github.com/GeertJohan/go.rice/rice
+
 output="out/"
 
 rm -rf $output
